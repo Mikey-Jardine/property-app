@@ -1,20 +1,25 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import configData from "./config.json";
 
 class MainPage extends React.Component {
 
     state = {
         homes: 
           [ ]
-      }
-
+      }     
       onHandleGetAllProperties = () =>
       {
-        let result = axios.get("http://localhost:51131/GetAllProperty")
+        let result = axios.get(`${configData.API_URL}/GetAllProperty`)
         .then( res=> {
           this.setState({
             homes: [...this.state.homes, result]
           })
+
+          if(result === null || result === 'undefined')
+          {
+            
+          }
         }, (error) => {
           console.log(error);
         });
