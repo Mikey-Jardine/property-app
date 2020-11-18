@@ -1,20 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import MainPage from './MainPage';
-import CreateProperty from './CreateProperty';
-
+import { store } from "./actions/store";
+import { Provider } from "react-redux";
+import Homes from './components/home';
+import { Container } from "@material-ui/core";
+import { ToastProvider } from "react-toast-notifications";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      <div>
-          <MainPage />   
-          <CreateProperty />    
-      </div>
-      </header>
-    </div>
+    <Provider store={store}>
+      <ToastProvider autoDismiss={true}>
+        <Container maxWidth="lg">
+          <Homes />
+        </Container>
+      </ToastProvider>
+    </Provider>  
   );
 }
 
